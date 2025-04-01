@@ -1,0 +1,260 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Custom Font */
+  @font-face {
+    font-family: 'C&C Red Alert';
+    src: url('Font Styles/c_c_red_alert_inet/C&C Red Alert [INET].ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* Hide scrollbar but allow scrolling */
+  body {
+    overflow-y: hidden;
+    font-family: 'C&C Red Alert', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    background-color: #111;
+    color: #fff;
+  }
+  
+  /* Main Horizontal Scroll Container */
+  .horizontal-container {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden;
+    height: 100vh;
+    scroll-behavior: smooth; /* Smooth scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+  }
+  
+  /* Remove scroll-snap */
+  .horizontal-container {
+    scroll-snap-type: none;
+  }
+  
+  /* Prevent snap behavior for sections */
+  .section {
+    flex: 0 0 100vw; /* Don't shrink, don't grow, stay at 100% width */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3); /* More transparent background */
+  }
+  
+  /* Logo Styles */
+  .logo {
+    position: fixed;
+    top: 1rem;
+    left: 0.5rem;
+    z-index: 100;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/Logo_Light.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-image 0.3s ease;
+  }
+  
+  .logo:hover a {
+    background-image: url('images/Logo_Dark.png');
+  }
+  
+  .logo:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Continuous Horizontal Scrolling Text */
+  .scrolling-text-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 0;
+    z-index: 50;
+  }
+  
+  .scrolling-text {
+    display: flex;
+    white-space: nowrap;
+    width: 100%;
+  }
+  
+  .scrolling-text-item {
+    display: inline-block;
+    animation: scrollText 20s linear infinite;
+    padding-left: 100%;
+    font-size: 1rem;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+  }
+  
+  .scrolling-text-item2 {
+    display: inline-block;
+    animation: scrollText 20s linear infinite;
+    animation-delay: 10s;
+    padding-left: 100%;
+    font-size: 1rem;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+  }
+  
+  @keyframes scrollText {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* Section Content Styles */
+  .section-content {
+    max-width: 1200px;
+    width: 80%;
+    padding: 2rem;
+    z-index: 2; /* Ensure content is above the background */
+  }
+  
+  h1 {
+    font-family: 'C&C Red Alert', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Added text shadow for better readability */
+    letter-spacing: 2px;
+  }
+  
+  h2 {
+    font-family: 'C&C Red Alert', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    letter-spacing: 1.5px;
+  }
+  
+  p {
+    font-family: 'C&C Red Alert', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    letter-spacing: 1px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+    }
+    
+    .section-content {
+      width: 90%;
+    }
+  }
+  
+  /* Wheel Scrolling Optimization - Convert vertical scroll to horizontal */
+  html, body {
+    overflow: hidden;
+    height: 100%;
+  }
+  
+  body {
+    height: 100vh;
+    margin: 0;
+    background-color: #000; /* Ensure background is black */
+  }
+  
+  /* Fixed Parallax Background */
+  .parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%; /* Make the background wider than the viewport */
+    height: 100vh;
+    background-image: url('images/main_backrgound.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-x;
+    will-change: transform; /* Optimize performance */
+    z-index: -1; /* Ensure background stays behind content */
+    transform: translateX(0);
+    transition: transform 0.1s ease-out; /* Smooth transition for parallax effect */
+  }
+  
+  /* Dark Mode Toggle Button */
+  .dark-mode-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .dark-mode-toggle button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    background-image: url('images/dark_mode.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-image 0.3s ease;
+  }
+  
+  .dark-mode-toggle button:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Dark Mode Styles */
+  body.dark-mode {
+    background-color: #050505;
+    color: #f0f0f0;
+  }
+  
+  body.dark-mode .section {
+    background-color: rgba(0, 0, 0, 0.5); /* Darker overlay for dark mode */
+  }
+  
+  body.dark-mode h1,
+  body.dark-mode h2,
+  body.dark-mode p {
+    color: #f0f0f0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Stronger text shadow for dark mode */
+  }
+  
+  body.dark-mode .scrolling-text-container {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker scrolling text background */
+  }
+  

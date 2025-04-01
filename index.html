@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Parallax Background -->
+    <div class="parallax-bg"></div>
+    
+    <!-- Logo (Top Left Corner) -->
+    <div class="logo">
+        <a href="#section1"></a>
+    </div>
+    
+    <!-- Dark Mode Toggle Button (Top Right Corner) -->
+    <div class="dark-mode-toggle">
+        <button id="darkModeToggle"></button>
+    </div>
+    
+    <!-- Main Horizontal Scroll Container -->
+    <div class="horizontal-container">
+        <!-- Section 1: Hero -->
+        <section id="section1" class="section">
+            <div class="section-content">
+                <h1>KENZ BARINA</h1>
+                <h2>UI/UX DESIGNER & QA ENGINEER</h2>
+                <p>WELCOME TO MY PORTFOLIO. SCROLL HORIZONTALLY TO EXPLORE MY WORK AND SKILLS.</p>
+            </div>
+        </section>
+        
+        <!-- Section 2: Skills -->
+        <section id="section2" class="section">
+            <div class="section-content">
+                <h1>MY SKILLS</h1>
+                <p>THIS SECTION WILL SHOWCASE YOUR SKILLS.</p>
+            </div>
+        </section>
+        
+        <!-- Section 3: Projects -->
+        <section id="section3" class="section">
+            <div class="section-content">
+                <h1>MY PROJECTS</h1>
+                <p>THIS SECTION WILL SHOWCASE YOUR PROJECTS.</p>
+            </div>
+        </section>
+        
+        <!-- Section 4: Contact -->
+        <section id="section4" class="section">
+            <div class="section-content">
+                <h1>CONTACT ME</h1>
+                <p>THIS SECTION WILL INCLUDE YOUR CONTACT FORM.</p>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Continuous Scrolling Text Banner -->
+    <!-- <div class="scrolling-text-container">
+        <div class="scrolling-text">
+            <div class="scrolling-text-item">WEB DEVELOPMENT • UI/UX DESIGN • GRAPHIC DESIGN • ANIMATION • PHOTOGRAPHY • VIDEO EDITING • 3D MODELING • GAME DEVELOPMENT • ILLUSTRATION • WEB DEVELOPMENT • UI/UX DESIGN • GRAPHIC DESIGN • ANIMATION • PHOTOGRAPHY •</div>
+            <div class="scrolling-text-item2">WEB DEVELOPMENT • UI/UX DESIGN • GRAPHIC DESIGN • ANIMATION • PHOTOGRAPHY • VIDEO EDITING • 3D MODELING • GAME DEVELOPMENT • ILLUSTRATION • WEB DEVELOPMENT • UI/UX DESIGN • GRAPHIC DESIGN • ANIMATION • PHOTOGRAPHY •</div>
+        </div>
+    </div> -->
+
+    <!-- JavaScript for Mouse Wheel Horizontal Scroll, Parallax Effect, and Dark Mode Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.horizontal-container');
+            const background = document.querySelector('.parallax-bg');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            let lastScrollPosition = 0;
+            let isDarkMode = false;
+            
+            // Initialize dark mode from localStorage if available
+            if (localStorage.getItem('darkMode') === 'true') {
+                enableDarkMode();
+            } else {
+                disableDarkMode();
+            }
+            
+            // Dark mode toggle functionality
+            darkModeToggle.addEventListener('click', function() {
+                if (isDarkMode) {
+                    disableDarkMode();
+                } else {
+                    enableDarkMode();
+                }
+            });
+            
+            function enableDarkMode() {
+                document.body.classList.add('dark-mode');
+                background.style.backgroundImage = "url('images/main_background_dark.png')";
+                darkModeToggle.style.backgroundImage = "url('images/Light_mode.png')";
+                isDarkMode = true;
+                localStorage.setItem('darkMode', 'true');
+            }
+            
+            function disableDarkMode() {
+                document.body.classList.remove('dark-mode');
+                background.style.backgroundImage = "url('images/main_backrgound.png')";
+                darkModeToggle.style.backgroundImage = "url('images/dark_mode.png')";
+                isDarkMode = false;
+                localStorage.setItem('darkMode', 'false');
+            }
+            
+            // Handle mouse wheel events on the entire document
+            document.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                if (e.deltaY !== 0) {
+                    // Update container scroll position
+                    container.scrollLeft += e.deltaY;
+                    
+                    // Calculate parallax effect
+                    const scrollDelta = container.scrollLeft - lastScrollPosition;
+                    const parallaxAmount = -container.scrollLeft * 0.3; // Adjust speed with multiplier
+                    
+                    // Apply parallax transform with smooth transition
+                    background.style.transform = `translateX(${parallaxAmount}px)`;
+                    
+                    // Update last scroll position
+                    lastScrollPosition = container.scrollLeft;
+                }
+            }, { passive: false });
+
+            // Handle scroll events for any other scrolling methods
+            container.addEventListener('scroll', function() {
+                const parallaxAmount = -container.scrollLeft * 0.3; // Keep same speed as wheel event
+                background.style.transform = `translateX(${parallaxAmount}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

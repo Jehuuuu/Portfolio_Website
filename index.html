@@ -7,35 +7,101 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Menu Toggle only -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <div class="logo-icon"></div>
+    </div>
+    
+    <!-- Navigation menu -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#" onclick="document.querySelector('.horizontal-container').scrollTo({left: 0, behavior: 'smooth'}); toggleMenu();">HOME</a></li>
+            <li><a href="#" onclick="document.querySelector('.horizontal-container').scrollTo({left: window.innerWidth, behavior: 'smooth'}); toggleMenu();">SKILLS</a></li>
+            <li><a href="#" onclick="document.querySelector('.horizontal-container').scrollTo({left: window.innerWidth * 2, behavior: 'smooth'}); toggleMenu();">PROJECTS</a></li>
+            <li><a href="#" onclick="document.querySelector('.horizontal-container').scrollTo({left: window.innerWidth * 3, behavior: 'smooth'}); toggleMenu();">CONTACT</a></li>
+        </ul>
+    </nav>
+    
     <!-- Parallax Background -->
     <div class="parallax-bg"></div>
     
-    <!-- Logo (Top Left Corner) -->
-    <div class="logo">
-        <a href="#section1"></a>
-    </div>
-    
-    <!-- Dark Mode Toggle Button (Top Right Corner) -->
-    <div class="dark-mode-toggle">
-        <button id="darkModeToggle"></button>
-    </div>
-    
     <!-- Main Horizontal Scroll Container -->
-    <div class="horizontal-container">
+    <div class="horizontal-container">  
         <!-- Section 1: Hero -->
         <section id="section1" class="section">
-            <div class="section-content">
-                <h1>KENZ BARINA</h1>
-                <h2>UI/UX DESIGNER & QA ENGINEER</h2>
-                <p>WELCOME TO MY PORTFOLIO. SCROLL HORIZONTALLY TO EXPLORE MY WORK AND SKILLS.</p>
+            <div class="section-content hero-content">
+                <div class="hero-text">
+                    <span class="greeting">Hi, I'm</span>
+                    <h1>KENZ BARINA</h1>
+                    <h2>UI/UX DESIGNER & QA ENGINEER</h2>
+                    <p class="hero-description">Crafting digital experiences that blend creativity with functionality. I specialize in creating intuitive user interfaces and ensuring top-notch quality through comprehensive testing.</p>
+                    
+                    <div class="social-icons">
+                        <a href="#resume-lightbox" class="social-icon-container">
+                            <span class="social-icon resume-icon"></span>
+                            <span class="social-label">Resume</span>
+                        </a>
+                        <a href="https://www.facebook.com/kenzjehu" target="_blank" class="social-icon-container">
+                            <span class="social-icon facebook-icon"></span>
+                            <span class="social-label">Facebook</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/kenz-jehu-barina-492255293/" target="_blank" class="social-icon-container">
+                            <span class="social-icon linkedin-icon"></span>
+                            <span class="social-label">LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/Jehuuuu" target="_blank" class="social-icon-container">
+                            <span class="social-icon github-icon"></span>
+                            <span class="social-label">GitHub</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image-container">
+                    <img src="images/hero_image2.png" alt="Kenz Barina" class="hero-image">
+                </div>
             </div>
         </section>
         
-        <!-- Section 2: Skills -->
-        <section id="section2" class="section">
-            <div class="section-content">
-                <h1>MY SKILLS</h1>
-                <p>THIS SECTION WILL SHOWCASE YOUR SKILLS.</p>
+        <!-- Add a new Skills section after the hero section -->
+        <section id="skills" class="section">
+            <div class="section-content skills-content">
+                <div class="skills-heading">
+                    <h2>MY SKILLS</h2>
+                    <p class="skills-intro">Specialized expertise in design and quality assurance</p>
+                </div>
+                
+                <div class="skills-container">
+                    <!-- Left column - boxes animate from top to bottom -->
+                    <div class="skills-column left-column">
+                        <div class="skill-box top-to-bottom">
+                            <h3>UI/UX DESIGN</h3>
+                            <p>Creating intuitive and engaging user interfaces with focus on usability and accessibility.</p>
+                        </div>
+                        <div class="skill-box top-to-bottom">
+                            <h3>WIREFRAMING</h3>
+                            <p>Developing detailed blueprints and prototypes that guide the development process.</p>
+                        </div>
+                        <div class="skill-box top-to-bottom">
+                            <h3>RESPONSIVE DESIGN</h3>
+                            <p>Building layouts that adapt seamlessly to any device or screen size.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Right column - boxes animate from bottom to top -->
+                    <div class="skills-column right-column">
+                        <div class="skill-box bottom-to-top">
+                            <h3>QA TESTING</h3>
+                            <p>Comprehensive testing strategies to ensure high-quality software delivery.</p>
+                        </div>
+                        <div class="skill-box bottom-to-top">
+                            <h3>AUTOMATION</h3>
+                            <p>Creating efficient test scripts to streamline the quality assurance process.</p>
+                        </div>
+                        <div class="skill-box bottom-to-top">
+                            <h3>BUG TRACKING</h3>
+                            <p>Systematic identification, documentation, and resolution of software issues.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
@@ -56,79 +122,115 @@
         </section>
     </div>
     
-    <!-- Continuous Scrolling Text Banner -->
-    <!-- <div class="scrolling-text-container">
-        <div class="scrolling-text">
-            <div class="scrolling-text-item">WEB DEVELOPMENT • UI/UX DESIGN • GRAPHIC DESIGN • ANIMATION • PHOTOGRAPHY • VIDEO EDITING • 3D MODELING • GAME DEVELOPMENT • ILLUSTRATION • WEB DEVELOPMENT • UI/UX DESIGN • GRAPHIC DESIGN • ANIMATION • PHOTOGRAPHY •</div>
-            <div class="scrolling-text-item2">WEB DEVELOPMENT • UI/UX DESIGN • GRAPHIC DESIGN • ANIMATION • PHOTOGRAPHY • VIDEO EDITING • 3D MODELING • GAME DEVELOPMENT • ILLUSTRATION • WEB DEVELOPMENT • UI/UX DESIGN • GRAPHIC DESIGN • ANIMATION • PHOTOGRAPHY •</div>
+    <!-- Scroll Reminder Banner -->
+    <div class="scroll-reminder">
+        <div class="scroll-indicator">
+            <span class="arrow">←</span>
+            <span>SCROLL HORIZONTALLY</span>
+            <span class="arrow">→</span>
         </div>
-    </div> -->
+    </div>
 
-    <!-- JavaScript for Mouse Wheel Horizontal Scroll, Parallax Effect, and Dark Mode Toggle -->
+    <!-- Resume Lightbox -->
+    <div id="resume-lightbox" class="resume-lightbox">
+        <div class="resume-container">
+            <img src="images/resume.png" alt="Kenz Barina Resume" class="resume-image">
+            <a href="#" class="close-resume">×</a>
+        </div>
+    </div>
+
+    <!-- Main JavaScript for Horizontal Scrolling and Parallax -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {  
             const container = document.querySelector('.horizontal-container');
             const background = document.querySelector('.parallax-bg');
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            let lastScrollPosition = 0;
-            let isDarkMode = false;
+            const skillsSection = document.getElementById('skills');
+            const mainNav = document.querySelector('.main-nav');
             
-            // Initialize dark mode from localStorage if available
-            if (localStorage.getItem('darkMode') === 'true') {
-                enableDarkMode();
-            } else {
-                disableDarkMode();
-            }
-            
-            // Dark mode toggle functionality
-            darkModeToggle.addEventListener('click', function() {
-                if (isDarkMode) {
-                    disableDarkMode();
-                } else {
-                    enableDarkMode();
+            // Function to handle parallax effect
+            function updateParallax() {
+                // Background parallax (moving slower than scroll)
+                const parallaxAmount = -container.scrollLeft * 0.3;
+                background.style.transform = `translateX(${parallaxAmount}px)`;
+                
+                // Check if skills section is in view
+                const skillsRect = skillsSection.getBoundingClientRect();
+                const isInView = skillsRect.left < window.innerWidth && skillsRect.right > 0;
+                
+                if (isInView && !skillsSection.classList.contains('viewing')) {
+                    skillsSection.classList.remove('viewed');
+                    skillsSection.classList.add('viewing');
+                } else if (!isInView && skillsSection.classList.contains('viewing')) {
+                    skillsSection.classList.remove('viewing');
+                    skillsSection.classList.add('viewed');
                 }
-            });
-            
-            function enableDarkMode() {
-                document.body.classList.add('dark-mode');
-                background.style.backgroundImage = "url('images/main_background_dark.png')";
-                darkModeToggle.style.backgroundImage = "url('images/Light_mode.png')";
-                isDarkMode = true;
-                localStorage.setItem('darkMode', 'true');
             }
             
-            function disableDarkMode() {
-                document.body.classList.remove('dark-mode');
-                background.style.backgroundImage = "url('images/main_backrgound.png')";
-                darkModeToggle.style.backgroundImage = "url('images/dark_mode.png')";
-                isDarkMode = false;
-                localStorage.setItem('darkMode', 'false');
-            }
-            
-            // Handle mouse wheel events on the entire document
-            document.addEventListener('wheel', function(e) {
+            // Handle mouse wheel events
+            document.addEventListener('wheel', (e) => {
                 e.preventDefault();
                 if (e.deltaY !== 0) {
-                    // Update container scroll position
-                    container.scrollLeft += e.deltaY;
-                    
-                    // Calculate parallax effect
-                    const scrollDelta = container.scrollLeft - lastScrollPosition;
-                    const parallaxAmount = -container.scrollLeft * 0.3; // Adjust speed with multiplier
-                    
-                    // Apply parallax transform with smooth transition
-                    background.style.transform = `translateX(${parallaxAmount}px)`;
-                    
-                    // Update last scroll position
-                    lastScrollPosition = container.scrollLeft;
+                    container.scrollLeft += e.deltaY * 10;
+                    updateParallax();
                 }
             }, { passive: false });
 
-            // Handle scroll events for any other scrolling methods
-            container.addEventListener('scroll', function() {
-                const parallaxAmount = -container.scrollLeft * 0.3; // Keep same speed as wheel event
-                background.style.transform = `translateX(${parallaxAmount}px)`;
+            // Handle other scrolling methods
+            container.addEventListener('scroll', updateParallax);
+            
+            // Initial check for skills section visibility
+            setTimeout(updateParallax, 100);
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                // If menu is active and click is outside the menu
+                if (mainNav.classList.contains('active') && !mainNav.contains(e.target) && !e.target.closest('.menu-toggle')) {
+                    toggleMenu();
+                }
             });
+        });
+
+        // Add menu toggle function
+        function toggleMenu() {
+            const nav = document.querySelector('.main-nav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            // Only toggle if we're not in mobile view (> 992px)
+            if (window.innerWidth > 992) {
+                nav.classList.toggle('active');
+                
+                // Explicitly hide/show the menu toggle
+                if (nav.classList.contains('active')) {
+                    menuToggle.style.display = 'none';
+                } else {
+                    menuToggle.style.display = 'flex';
+                }
+            }
+        }
+
+        // Add window resize handler to adjust menu behavior based on screen width
+        window.addEventListener('resize', function() {
+            const nav = document.querySelector('.main-nav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (window.innerWidth <= 992) {
+                // Mobile view - ensure menu is visible and remove active class
+                nav.classList.remove('active');
+                menuToggle.style.display = 'none';
+            } else {
+                // Desktop view - reset to default state
+                if (!nav.classList.contains('active')) {
+                    menuToggle.style.display = 'flex';
+                }
+            }
+        });
+
+        // Run this once on page load to set the initial state
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.innerWidth <= 992) {
+                const menuToggle = document.querySelector('.menu-toggle');
+                if (menuToggle) menuToggle.style.display = 'none';
+            }
         });
     </script>
 </body>

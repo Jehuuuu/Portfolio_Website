@@ -26,12 +26,19 @@
   /* Main Horizontal Scroll Container */
   .horizontal-container {
     display: flex;
-    flex-wrap: nowrap; /* Prevent wrapping */
-    overflow-x: auto; /* Enable horizontal scrolling */
+    flex-wrap: nowrap;
+    overflow-x: auto;
     overflow-y: hidden;
     height: 100vh;
-    scroll-behavior: smooth; /* Smooth scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .horizontal-container::-webkit-scrollbar {
+    display: none;
   }
   
   /* Remove scroll-snap */
@@ -46,7 +53,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.3); /* More transparent background */
+    background-color: transparent; /* Remove background - changed from rgba(0, 0, 0, 0.3) */
   }
   
   /* Logo Styles */
@@ -61,25 +68,77 @@
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
+    animation: slideDown 0.8s ease-out;
+    pointer-events: auto; /* Enable interactions */
   }
   
+  /* Default light mode - show dark logo by default */
   .logo a {
     display: block;
     width: 100%;
     height: 100%;
-    background-image: url('images/Logo_Light.png');
+    background-image: url('images/Logo_Dark.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     transition: background-image 0.3s ease;
+    cursor: pointer; /* Add cursor pointer */
   }
   
+  /* Light mode hover - switch to light logo */
   .logo:hover a {
+    background-image: url('images/Logo_Light.png');
+  }
+  
+  /* Dark mode - show light logo by default */
+  body.dark-mode .logo a {
+    background-image: url('images/Logo_Light.png');
+  }
+  
+  /* Dark mode hover - switch to dark logo */
+  body.dark-mode .logo:hover a {
     background-image: url('images/Logo_Dark.png');
   }
   
-  .logo:hover {
-    transform: scale(1.1);
+  /* Automatic dark mode based on system preference */
+  @media (prefers-color-scheme: dark) {
+    body:not(.light-mode):not(.dark-mode) {
+      background-color: #050505;
+      color: #f0f0f0;
+    }
+
+    body:not(.light-mode):not(.dark-mode) .section {
+      background-color: transparent; /* Changed from rgba(0, 0, 0, 0.5) */
+    }
+
+    body:not(.light-mode):not(.dark-mode) h1,
+    body:not(.light-mode):not(.dark-mode) h2,
+    body:not(.light-mode):not(.dark-mode) p {
+      color: #f0f0f0;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    body:not(.light-mode):not(.dark-mode) .scrolling-text-container {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    body:not(.light-mode):not(.dark-mode) .logo a {
+      background-image: url('images/Logo_Light.png');
+    }
+
+    body:not(.light-mode):not(.dark-mode) .logo:hover a {
+      background-image: url('images/Logo_Dark.png');
+    }
+
+    body:not(.light-mode):not(.dark-mode) .scroll-reminder {
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    body:not(.light-mode):not(.dark-mode) .scroll-indicator,
+    body:not(.light-mode):not(.dark-mode) .arrow {
+      color: #000;
+    }
   }
   
   /* Continuous Horizontal Scrolling Text */
@@ -135,6 +194,7 @@
     max-width: 1200px;
     width: 80%;
     padding: 2rem;
+    padding-bottom: 6rem; /* Increased bottom padding for more space above footer */
     z-index: 2; /* Ensure content is above the background */
   }
   
@@ -244,7 +304,7 @@
   }
   
   body.dark-mode .section {
-    background-color: rgba(0, 0, 0, 0.5); /* Darker overlay for dark mode */
+    background-color: transparent; /* Changed from rgba(0, 0, 0, 0.5) */
   }
   
   body.dark-mode h1,
@@ -258,3 +318,1161 @@
     background-color: rgba(0, 0, 0, 0.8); /* Darker scrolling text background */
   }
   
+  /* Hero Section Styles */
+  .section-content.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    max-width: 1600px;
+    margin: 0 auto;
+    min-height: calc(100vh - (80px + 4rem));
+    max-height: 905px; /* Add maximum height constraint to prevent overflow */
+    padding: 0 1rem 5rem 1rem; /* Change top padding to 0 */
+    gap: 3rem;
+    margin-bottom: 2rem;
+    overflow: auto; /* Allow scrolling if content exceeds max height */
+  }
+  
+  .hero-text {
+    flex: 1;
+    min-width: 330px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .greeting {
+    font-size: clamp(1.7rem, 2.2vw, 2.2rem);
+    color: var(--text-color);
+    margin: 0;
+    letter-spacing: 1px;
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  .hero-text h1 {
+    font-size: clamp(3rem, 5vw, 5rem);
+    margin: 0;
+    color: var(--text-color);
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+    line-height: 1.1;
+  }
+  
+  .hero-text h2 {
+    font-size: clamp(1.3rem, 2vw, 1.7rem);
+    color: var(--text-color);
+    margin: 0;
+    letter-spacing: 2px;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+  }
+  
+  .hero-description {
+    font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+    line-height: 1.6;
+    color: var(--text-color);
+    margin: 0;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+    text-align: justify;
+  }
+  
+  .hero-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1s ease-out;
+    max-width: 450px; /* Reduced from 550px to ensure it fits */
+    padding: 1rem;
+    align-self: center; /* Center vertically within the parent */
+  }
+  
+  .hero-image {
+    width: 90%; /* Reduced from 95% */
+    height: auto;
+    max-height: 500px; /* Add max-height to prevent vertical overflow */
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .hero-image:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Dark mode adjustments for hero image */
+  @media (prefers-color-scheme: dark) {
+    .hero-image {
+      content: url('images/hero_image3.png');
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    0%, 5% {
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    45%, 55% {
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+    95%, 100% {
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Dark mode adjustments for hero section */
+  @media (prefers-color-scheme: dark) {
+    .greeting, .hero-text h1, .hero-text h2, .hero-description {
+      color: var(--text-color);
+    }
+
+    .hero-description {
+      color: var(--text-color);
+    }
+
+    .hero-text {
+      background: transparent;
+      border: none;
+    }
+  }
+  
+  /* Responsive adjustments for hero section */
+  @media (max-width: 992px) {
+    .section-content.hero-content {
+      flex-direction: column-reverse;
+      text-align: center;
+      min-height: calc(100vh - (80px + 3rem));
+      padding: 0 2rem 3rem 2rem; /* Change top padding to 0 */
+      gap: 2rem;
+      padding-bottom: 3rem;
+      margin-bottom: 2rem;
+      max-height: 905px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .hero-text {
+      width: 100%;
+      align-items: center;
+      padding: 0;
+    }
+
+    .hero-description {
+      text-align: center;
+      margin: 0;
+    }
+
+    .hero-image-container {
+      width: 100%;
+      max-width: 60%; /* Further reduced from 70% for better fit */
+      padding: 0;
+    }
+    
+    .hero-image {
+      width: 85%;
+      max-height: 380px; /* Slightly reduced max height for mobile */
+    }
+  }
+  
+  @media (min-width: 993px) {
+    .hero-text {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .section-content.hero-content {
+      min-height: calc(100vh - (80px + 2rem));
+      padding: 0 1rem 1rem 1rem; /* Change top padding to 0 */
+      gap: 1.5rem;
+    }
+
+    .hero-image-container {
+      max-width: 55%; /* Further reduced from 65% for smallest screens */
+    }
+    
+    .hero-image {
+      width: 75%;
+      max-height: 320px; /* Even smaller for mobile */
+    }
+  }
+  
+  /* Remove all footer container styles - update to keep scroll reminder visible */
+  .footer-container {
+    display: none;
+  }
+
+  /* Override the previous display:none rule */
+  .scroll-reminder {
+    display: block !important;
+  }
+
+  .scroll-indicator {
+    display: flex !important;
+  }
+
+  .arrow {
+    display: inline-block !important;
+  }
+
+  /* Remove footer-related animations */
+  @keyframes arrowPulse {
+    from { opacity: 0; }
+    to { opacity: 0; }
+  }
+
+  @keyframes arrowPulseLeft {
+    from { opacity: 0; }
+    to { opacity: 0; }
+  }
+
+  /* Remove media queries related to footer */
+  @media (max-width: 992px) {
+    .section-content.hero-content {
+      padding-top: 90px; /* Increased from 70px to prevent overlap with main-nav */
+      padding-bottom: 2rem; /* Reduced padding since no footer */
+    }
+    
+    .section-content:not(.hero-content) {
+      padding-top: 90px;
+      padding-bottom: 2rem;
+    }
+    
+    /* Reduce social icons margin since no footer */
+    .social-icons {
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .section-content,
+    .section-content.hero-content {
+      padding-bottom: 2rem;
+    }
+    
+    .social-icons {
+      margin-bottom: 2rem;
+    }
+  }
+
+  /* Light Mode (Default) */
+  :root {
+    --bg-color: #111;
+    --text-color: #fff;
+    --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --section-bg: transparent; /* Changed from rgba(0, 0, 0, 0.3) */
+    --shadow-color: rgba(0, 0, 0, 0.5);
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .section {
+    background-color: var(--section-bg);
+  }
+
+  /* Pure CSS Dark Mode using prefers-color-scheme */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: #050505;
+      --text-color: #f0f0f0;
+      --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+      --section-bg: transparent; /* Changed from rgba(0, 0, 0, 0.5) */
+      --shadow-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .parallax-bg {
+      background-image: url('images/main_background_dark.png') !important;
+    }
+    
+    .logo a {
+      background-image: url('images/Logo_Light.png');
+    }
+    
+    .logo:hover a {
+      background-image: url('images/Logo_Dark.png');
+    }
+    
+    .scroll-reminder {
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .scroll-indicator,
+    .arrow {
+      color: #000;
+    }
+  }
+
+  /* Main Navigation Styles */
+  .main-nav {
+    pointer-events: auto;
+    animation: fadeInDown 1s ease-out 0.3s both;
+    position: fixed;
+    top: 0;
+    right: -220px; /* Adjust off-screen position to match new width */
+    width: 200px; /* Reduce width from 250px to 200px */
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 30px 1.5rem 2rem; /* Reduced top padding from 70px to 30px */
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 97;
+  }
+
+  /* Remove the ::before pseudo-element that contains 'MENU' text */
+  .main-nav::before {
+    content: '';
+  }
+
+  .main-nav.active {
+    right: 0;
+  }
+
+  .main-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-top: 20px; /* Add some space at the top of the list */
+  }
+
+  .main-nav li {
+    position: relative;
+  }
+
+  .main-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+    position: relative;
+    display: block;
+  }
+
+  .main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--text-color);
+    transition: width 0.3s ease;
+  }
+
+  .main-nav a:hover {
+    color: #fff;
+  }
+
+  .main-nav a:hover::after {
+    width: 100%;
+  }
+
+  /* Menu Toggle with Logo Icon */
+  .menu-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+    cursor: pointer;
+    pointer-events: auto;
+    background: transparent;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .menu-toggle:hover {
+    transform: scale(1.1);
+  }
+
+  .logo-icon {
+    width: 100%;
+    height: 100%;
+    background-image: url('images/Logo_Dark.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-image 0.3s ease;
+  }
+
+  .menu-toggle:hover .logo-icon {
+    background-image: url('images/Logo_Light.png');
+  }
+
+  /* Dark mode adjustments */
+  @media (prefers-color-scheme: dark) {
+    .main-nav {
+      background: rgba(30, 30, 40, 0.95);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+      border-left: 1px solid rgba(100, 100, 120, 0.2);
+    }
+    
+    .logo-icon {
+      background-image: url('images/Logo_Light.png');
+    }
+    
+    .menu-toggle:hover .logo-icon {
+      background-image: url('images/Logo_Dark.png');
+    }
+  }
+
+  /* Social Icons Styles */
+  .social-icons {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    gap: 1.2rem;
+    width: auto;
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+    margin: 0;
+    margin-bottom: 3rem;
+    overflow-x: auto; /* Allow horizontal scrolling if necessary */
+    justify-content: flex-start; /* Align to start */
+    -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .social-icons::-webkit-scrollbar {
+    display: none;
+  }
+
+  .social-icon-container {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    order: 1;
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+
+  .social-icon-container:hover {
+    transform: scale(1.05);
+  }
+
+  .social-icon {
+    width: 38px;
+    height: 38px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: filter 0.3s ease;
+    order: 1;
+  }
+
+  .social-label {
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    order: 2;
+    margin-left: 0.4rem;
+    margin-right: 0;
+  }
+
+  .social-icon-container:hover .social-icon {
+    filter: brightness(1.2);
+  }
+
+  .social-icon-container:hover .social-label {
+    color: #fafafa;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+
+  .resume-icon {
+    background-image: url('images/resume_icon.png');
+  }
+
+  .facebook-icon {
+    background-image: url('images/facebook_icon.png');
+  }
+
+  .linkedin-icon {
+    background-image: url('images/linkedin_icon.png');
+  }
+
+  .github-icon {
+    background-image: url('images/github_icon.png');
+  }
+
+  /* Dark mode adjustments for social icons */
+  @media (prefers-color-scheme: dark) {
+    .social-icon {
+      filter: brightness(1.1);
+    }
+    
+    .social-icon-container:hover .social-icon {
+      filter: brightness(1.3);
+    }
+  }
+
+  /* Responsive adjustments for social icons */
+  @media (max-width: 992px) {
+    .social-icons {
+      width: auto;
+      margin: 0 auto;
+      margin-bottom: 4rem;
+      justify-content: center;
+      gap: 1rem; /* Reduce gap on smaller screens */
+    }
+    
+    .social-icon {
+      width: 30px; /* Smaller icons */
+      height: 30px;
+    }
+    
+    .social-label {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .social-icons {
+      gap: 0.7rem;
+      margin-bottom: 5rem;
+    }
+    
+    .social-icon {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .social-label {
+      font-size: 0.7rem;
+      margin-right: 0.3rem;
+    }
+  }
+
+  /* Extra small screens */
+  @media (max-width: 420px) {
+    .social-icons {
+      gap: 0.5rem;
+    }
+    
+    .social-icon {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .social-label {
+      font-size: 0.6rem;
+      margin-left: 0.3rem;
+    }
+  }
+
+  /* Resume Lightbox Styles */
+  .resume-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .resume-lightbox:target {
+    display: flex;
+  }
+
+  .resume-container {
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+    overflow: auto;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .resume-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .close-resume {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #000;
+    font-size: 30px;
+    text-decoration: none;
+    background: #fff;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  /* Dark mode adjustments */
+  @media (prefers-color-scheme: dark) {
+    .resume-container {
+      background-color: #333;
+    }
+    
+    .close-resume {
+      color: #fff;
+      background: #333;
+    }
+  }
+
+  /* Skills Section Styles */
+  .skills-content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .skills-heading {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .skills-intro {
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    opacity: 0.9;
+    margin-top: 0.5rem;
+  }
+
+  .skills-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .skills-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .left-column {
+    align-items: flex-end;
+  }
+
+  .right-column {
+    align-items: flex-start;
+  }
+
+  .skill-box {
+    background: rgba(25, 25, 35, 0.85);
+    border: 1px solid rgba(100, 100, 130, 0.25);
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+                opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+                box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                border 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .skill-box:hover {
+    transform: translateY(-5px) scale(1.01);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                border 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .skill-box h3 {
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .skill-box p {
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+
+  /* Animation for boxes */
+  .top-to-bottom {
+    animation: slideFromTop 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  .bottom-to-top {
+    animation: slideFromBottom 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  /* Delay for each box */
+  .skills-column .skill-box:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+
+  .skills-column .skill-box:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+
+  .skills-column .skill-box:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes slideFromTop {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    30% {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    0%, 20% {
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    60%, 100% {
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  @keyframes slideFromBottom {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    30% {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    0%, 20% {
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    60%, 100% {
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  /* Dark mode adjustments for skills section */
+  @media (prefers-color-scheme: dark) {
+    .skill-box {
+      background: rgba(25, 25, 35, 0.85);
+      border: 1px solid rgba(100, 100, 130, 0.25);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  /* Responsive adjustments for skills section */
+  @media (max-width: 992px) {
+    .skills-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .skills-column {
+      width: 100%;
+      align-items: center;
+    }
+    
+    .skill-box {
+      max-width: 100%;
+    }
+  }
+
+  /* Reapply animations when section comes into view */
+  #skills.viewed .top-to-bottom,
+  #skills.viewed .bottom-to-top {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #skills.viewing .top-to-bottom {
+    animation: slideFromTop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  #skills.viewing .bottom-to-top {
+    animation: slideFromBottom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  #skills.viewing .skills-column .skill-box:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+
+  #skills.viewing .skills-column .skill-box:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+
+  #skills.viewing .skills-column .skill-box:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+
+  /* Keep keyframes for animations */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    0%, 5% {
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    45%, 55% {
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+    95%, 100% {
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    0%, 20% {
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    60%, 100% {
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  /* Remove menu-boundary style */
+  .menu-boundary {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .main-nav {
+      background: rgba(30, 30, 40, 0.95);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+      border-left: 1px solid rgba(100, 100, 120, 0.2);
+    }
+    
+    .main-nav a {
+      color: #e0e0ff;
+    }
+    
+    .main-nav a::after {
+      background-color: #8080ff;
+    }
+    
+    .main-nav a:hover {
+      color: #ffffff;
+    }
+    
+    /* Mobile dark mode styles */
+    @media (max-width: 992px) {
+      .main-nav {
+        background: rgba(30, 30, 40, 0.98);
+        border-left: none;
+        border-bottom: 1px solid rgba(100, 100, 120, 0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+
+  /* Responsive navigation for mobile devices */
+  @media (max-width: 992px) {
+    /* Fixed navigation at top */
+    .main-nav {
+      position: fixed;
+      right: 0;
+      top: -100%; /* Start from off-screen top instead of right */
+      width: 100%;
+      height: auto;
+      padding: 15px 1rem;
+      background: rgba(30, 30, 40, 0.95);
+      border-bottom: 1px solid rgba(100, 100, 120, 0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      transition: top 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      animation: slideFromTop 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    
+    /* Create specific keyframe for mobile menu */
+    @keyframes slideFromTop {
+      from {
+        top: -100%;
+        opacity: 0;
+      }
+      to {
+        top: 0;
+        opacity: 1;
+      }
+    }
+    
+    /* For menu toggle functionality on mobile */
+    .main-nav.active {
+      top: 0; /* Slide from top instead of right */
+    }
+    
+    .main-nav ul {
+      flex-direction: row;
+      justify-content: center;
+      gap: 1rem;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    
+    .main-nav a {
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      text-align: center;
+      padding: 0.3rem 0;
+    }
+    
+    /* Hide menu toggle in this dimension */
+    .menu-toggle {
+      display: none;
+    }
+    
+    /* Adjust hero content to prevent overlap with navigation */
+    .section-content.hero-content {
+      padding-top: 150px; /* Changed from 90px to 150px as requested */
+      padding-bottom: 3rem; /* Reduced from 7rem to reduce blank space */
+      margin-bottom: 2rem; /* Add bottom margin */
+    }
+    
+    /* Adjust content for other sections */
+    .section-content:not(.hero-content) {
+      padding-top: 90px; 
+      padding-bottom: 3rem; /* Reduced from 7rem */
+      margin-bottom: 2rem;
+    }
+    
+    /* Ensure proper spacing for social icons */
+    .social-icons {
+      margin-bottom: 3rem; /* Reduced from 5rem */
+    }
+  }
+
+  /* Very small screens */
+  @media (max-width: 480px) {
+    .main-nav ul {
+      gap: 0.7rem;
+    }
+    
+    .main-nav a {
+      font-size: 0.9rem;
+      letter-spacing: 0px;
+    }
+  }
+
+  /* Small screens */
+  @media (max-width: 576px) {
+    .section-content,
+    .section-content.hero-content {
+      padding-bottom: 2rem; /* Reduced from 6rem */
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-image-container {
+      max-width: 80%; /* Further reduced for smallest screens */
+    }
+    
+    .hero-image {
+      width: 85%;
+    }
+    
+    .social-icons {
+      margin-bottom: 2.5rem; /* Reduced from 5.5rem */
+    }
+  }
+
+  .main-nav.active ~ .menu-toggle {
+    display: none;
+  }
+
+  /* The issue is with the CSS selector - add a more direct and reliable selector */
+  body:has(.main-nav.active) .menu-toggle {
+    display: none;
+  }
+
+  /* Remove all close-nav styles */
+  .close-nav,
+  .close-nav:hover,
+  .main-nav::after {
+    display: none;
+  }
+
+  /* Ensure all hero content has appropriate spacing on mobile */
+  @media (max-width: 992px) {
+    .horizontal-container section:first-child {
+      margin-top: 50px;
+    }
+    
+    .section-content:not(.hero-content) {
+      padding-top: 70px;
+    }
+  }
+
+  /* Scroll Reminder Banner */
+  .scroll-reminder {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    z-index: 95;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap; /* Prevent text wrapping */
+    max-width: 90%; /* Limit width on small screens */
+  }
+
+  .scroll-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+
+  .arrow {
+    font-size: 1rem;
+    animation: pulse 1.5s infinite alternate;
+  }
+
+  .arrow:first-child {
+    animation-name: pulseLeft;
+  }
+
+  .arrow:last-child {
+    animation-delay: 0.75s;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.6;
+      transform: translateX(0);
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+  }
+
+  @keyframes pulseLeft {
+    0% {
+      opacity: 0.6;
+      transform: translateX(0);
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(-3px);
+    }
+  }
+
+  /* Dark Mode Styles for Scroll Reminder */
+  @media (prefers-color-scheme: dark) {
+    .scroll-reminder {
+      background-color: rgba(30, 30, 40, 0.8);
+      border: 1px solid rgba(100, 100, 130, 0.2);
+    }
+  }
+
+  /* Remove the previous display:none for scroll reminder elements */
+  .footer-container {
+    display: none;
+  }
+
+  .scroll-reminder,
+  .scroll-indicator,
+  .arrow {
+    display: inherit;
+  }
+
+  /* Add responsive styles for smaller screens */
+  @media (max-width: 576px) {
+    .scroll-reminder {
+      padding: 0.4rem 0.8rem;
+    }
+    
+    .scroll-indicator {
+      font-size: 0.7rem;
+      gap: 0.3rem;
+    }
+    
+    .arrow {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Further reduce size for very small screens */
+  @media (max-width: 420px) {
+    .scroll-reminder {
+      padding: 0.3rem 0.6rem;
+    }
+    
+    .scroll-indicator {
+      font-size: 0.6rem;
+      letter-spacing: 0.5px;
+      gap: 0.2rem;
+    }
+    
+    .arrow {
+      font-size: 0.8rem;
+    }
+  }

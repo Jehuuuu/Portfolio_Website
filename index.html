@@ -3,141 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
+    <meta name="description" content="Kenz Barina - UI/UX Designer & QA Engineer Portfolio">
+    <meta name="keywords" content="UI/UX, design, QA, portfolio, frontend, developer">
+    <title>Kenz Barina - UI/UX Designer & QA Engineer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Menu Toggle only -->
-    <div class="menu-toggle" onclick="toggleMenu()">
+    <button class="menu-toggle desktop-only" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
         <div class="logo-icon"></div>
-    </div>
+    </button>
     
-    <!-- Navigation menu -->
-    <nav class="main-nav">
-        <ul>
-            <li><a href="#" onclick="document.querySelector('.horizontal-container').scrollTo({left: 0, behavior: 'smooth'}); toggleMenu();">HOME</a></li>
-            <li><a href="#" onclick="document.querySelector('.horizontal-container').scrollTo({left: window.innerWidth, behavior: 'smooth'}); toggleMenu();">SKILLS</a></li>
-            <li><a href="#" onclick="document.querySelector('.horizontal-container').scrollTo({left: window.innerWidth * 2, behavior: 'smooth'}); toggleMenu();">PROJECTS</a></li>
-            <li><a href="#" onclick="document.querySelector('.horizontal-container').scrollTo({left: window.innerWidth * 3, behavior: 'smooth'}); toggleMenu();">CONTACT</a></li>
-        </ul>
-    </nav>
+    <!-- Primary Navigation -->
+    <header role="banner">
+        <nav class="main-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="#hero" onclick="document.querySelector('.horizontal-container').scrollTo({left: 0, behavior: 'smooth'}); toggleMenu();">HOME</a></li>
+                <li><a href="#skills" onclick="document.querySelector('.horizontal-container').scrollTo({left: window.innerWidth, behavior: 'smooth'}); toggleMenu();">SKILLS</a></li>
+                <li><a href="#projects" onclick="document.querySelector('.horizontal-container').scrollTo({left: window.innerWidth * 2, behavior: 'smooth'}); toggleMenu();">PROJECTS</a></li>
+                <li><a href="#contact" onclick="document.querySelector('.horizontal-container').scrollTo({left: window.innerWidth * 3, behavior: 'smooth'}); toggleMenu();">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
     
     <!-- Parallax Background -->
-    <div class="parallax-bg"></div>
+    <div class="parallax-bg" aria-hidden="true"></div>
     
     <!-- Main Horizontal Scroll Container -->
-    <div class="horizontal-container">  
+    <main class="horizontal-container">  
         <!-- Section 1: Hero -->
-        <section id="section1" class="section">
+        <section id="hero" class="section">
             <div class="section-content hero-content">
-                <div class="hero-text">
-                    <span class="greeting">Hi, I'm</span>
+                <figure class="hero-image-wrapper">
+                    <div class="hero-image-container">
+                        <img class="hero-image" src="images/hero_image2.png" alt="Kenz Barina - UI/UX Designer" loading="eager">
+                    </div>
+                </figure>
+                <article class="hero-text">
+                    <p class="greeting">Hello, I'm</p>
                     <h1>KENZ BARINA</h1>
-                    <h2>UI/UX DESIGNER & QA ENGINEER</h2>
-                    <p class="hero-description">Crafting digital experiences that blend creativity with functionality. I specialize in creating intuitive user interfaces and ensuring top-notch quality through comprehensive testing.</p>
-                    
-                    <div class="social-icons">
-                        <a href="#resume-lightbox" class="social-icon-container">
+                    <h2>UI/UX Designer & QA Engineer</h2>
+                    <p class="hero-description">I create intuitive, visually appealing interfaces and ensure smooth, bug-free performance. With a focus on both design and quality, I deliver user experiences that are as functional as they are beautiful.</p>
+                    <div class="social-icons" aria-label="Social media links">
+                        <a href="#resume-lightbox" class="social-icon-container" aria-label="View Resume">
                             <span class="social-icon resume-icon"></span>
                             <span class="social-label">Resume</span>
                         </a>
-                        <a href="https://www.facebook.com/kenzjehu" target="_blank" class="social-icon-container">
+                        <a href="https://www.facebook.com/kenzjehu" target="_blank" rel="noopener noreferrer" class="social-icon-container" aria-label="Facebook Profile">
                             <span class="social-icon facebook-icon"></span>
                             <span class="social-label">Facebook</span>
                         </a>
-                        <a href="https://www.linkedin.com/in/kenz-jehu-barina-492255293/" target="_blank" class="social-icon-container">
+                        <a href="https://www.linkedin.com/in/kenz-jehu-barina-492255293/" target="_blank" rel="noopener noreferrer" class="social-icon-container" aria-label="LinkedIn Profile">
                             <span class="social-icon linkedin-icon"></span>
                             <span class="social-label">LinkedIn</span>
                         </a>
-                        <a href="https://github.com/Jehuuuu" target="_blank" class="social-icon-container">
+                        <a href="https://github.com/Jehuuuu" target="_blank" rel="noopener noreferrer" class="social-icon-container" aria-label="GitHub Profile">
                             <span class="social-icon github-icon"></span>
                             <span class="social-label">GitHub</span>
                         </a>
                     </div>
-                </div>
-                <div class="hero-image-container">
-                    <img src="images/hero_image2.png" alt="Kenz Barina" class="hero-image">
-                </div>
+                </article>
             </div>
         </section>
         
-        <!-- Add a new Skills section after the hero section -->
+        <!-- Section 2: Skills -->
         <section id="skills" class="section">
             <div class="section-content skills-content">
-                <div class="skills-heading">
-                    <h2>MY SKILLS</h2>
-                    <p class="skills-intro">Specialized expertise in design and quality assurance</p>
-                </div>
+                <header class="skills-heading">
+                    <h2>SKILLS</h2>
+                    <p class="skills-intro">Here's an overview of my professional expertise and technical capabilities.</p>
+                </header>
                 
-                <div class="skills-container">
-                    <!-- Left column - boxes animate from top to bottom -->
-                    <div class="skills-column left-column">
-                        <div class="skill-box top-to-bottom">
-                            <h3>UI/UX DESIGN</h3>
-                            <p>Creating intuitive and engaging user interfaces with focus on usability and accessibility.</p>
-                        </div>
-                        <div class="skill-box top-to-bottom">
-                            <h3>WIREFRAMING</h3>
-                            <p>Developing detailed blueprints and prototypes that guide the development process.</p>
-                        </div>
-                        <div class="skill-box top-to-bottom">
-                            <h3>RESPONSIVE DESIGN</h3>
-                            <p>Building layouts that adapt seamlessly to any device or screen size.</p>
-                        </div>
-                    </div>
+                <!-- Skills Grid Layout -->
+                <ul class="skills-grid" aria-label="List of skills">
+                    <!-- Skill Box 1 -->
+                    <li class="skill-box">
+                        <div class="skill-icon react-icon" aria-hidden="true"></div>
+                        <h3>REACT.JS</h3>
+                    </li>
                     
-                    <!-- Right column - boxes animate from bottom to top -->
-                    <div class="skills-column right-column">
-                        <div class="skill-box bottom-to-top">
-                            <h3>QA TESTING</h3>
-                            <p>Comprehensive testing strategies to ensure high-quality software delivery.</p>
-                        </div>
-                        <div class="skill-box bottom-to-top">
-                            <h3>AUTOMATION</h3>
-                            <p>Creating efficient test scripts to streamline the quality assurance process.</p>
-                        </div>
-                        <div class="skill-box bottom-to-top">
-                            <h3>BUG TRACKING</h3>
-                            <p>Systematic identification, documentation, and resolution of software issues.</p>
-                        </div>
-                    </div>
-                </div>
+                    <!-- Skill Box 2 -->
+                    <li class="skill-box">
+                        <div class="skill-icon html-icon" aria-hidden="true"></div>
+                        <h3>HTML</h3>
+                    </li>
+                    
+                    <!-- Skill Box 3 -->
+                    <li class="skill-box">
+                        <div class="skill-icon css-icon" aria-hidden="true"></div>
+                        <h3>CSS</h3>
+                    </li>
+                    
+                    <!-- Skill Box 4 -->
+                    <li class="skill-box">
+                        <div class="skill-icon python-icon" aria-hidden="true"></div>
+                        <h3>PYTHON</h3>
+                    </li>
+                    
+                    <!-- Skill Box 5 -->
+                    <li class="skill-box">
+                        <div class="skill-icon cpp-icon" aria-hidden="true"></div>
+                        <h3>C++</h3>
+                    </li>
+                    
+                    <!-- Skill Box 6 -->
+                    <li class="skill-box">
+                        <div class="skill-icon figma-icon" aria-hidden="true"></div>
+                        <h3>FIGMA</h3>
+                    </li>
+                    
+                    <!-- Skill Box 7 -->
+                    <li class="skill-box">
+                        <div class="skill-icon framer-icon" aria-hidden="true"></div>
+                        <h3>FRAMER</h3>
+                    </li>
+                    
+                    <!-- Skill Box 8 -->
+                    <li class="skill-box">
+                        <div class="skill-icon photoshop-icon" aria-hidden="true"></div>
+                        <h3>PHOTOSHOP</h3>
+                    </li>
+                </ul>
             </div>
         </section>
         
         <!-- Section 3: Projects -->
-        <section id="section3" class="section">
+        <section id="projects" class="section">
             <div class="section-content">
-                <h1>MY PROJECTS</h1>
-                <p>THIS SECTION WILL SHOWCASE YOUR PROJECTS.</p>
+                <header class="projects-heading">
+                    <h2>PROJECTS</h2>
+                    <p class="projects-intro">Here are some of my recent projects that showcase my skills and experience.</p>
+                </header>
+                <div class="projects-grid">
+                    <div class="project-card" data-title="Folderly">
+                        <div class="project-image">
+                            <img src="images/project1.png" alt="Folderly">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Folderly</h3>
+                            <p class="project-description">A brief description of the project that will be truncated with ellipsis...</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-title="Honey OS">
+                        <div class="project-image">
+                            <img src="images/project2.png" alt="Honey OS">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Honey OS</h3>
+                            <p class="project-description">A brief description of the project that will be truncated with ellipsis...</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-title="OX KBDF - nustar">
+                        <div class="project-image">
+                            <img src="images/project3.png" alt="OX KBDF - nustar">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">OX KBDF - nustar</h3>
+                            <p class="project-description">A brief description of the project that will be truncated with ellipsis...</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
         <!-- Section 4: Contact -->
-        <section id="section4" class="section">
-            <div class="section-content">
-                <h1>CONTACT ME</h1>
-                <p>THIS SECTION WILL INCLUDE YOUR CONTACT FORM.</p>
+        <section id="contact" class="section">
+            <div class="section-content contact-section">
+                <header class="contact-heading">
+                    <h2>CONTACT ME</h2>
+                    <p class="contact-intro">Have a project in mind or just want to say hello? Feel free to reach out!</p>
+                </header>
+                <div class="contact-form-container">
+                    <form class="contact-form" aria-label="Contact form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-input" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" required aria-required="true"></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
             </div>
         </section>
-    </div>
+    </main>
     
     <!-- Scroll Reminder Banner -->
-    <div class="scroll-reminder">
+    <aside class="scroll-reminder" aria-live="polite">
         <div class="scroll-indicator">
-            <span class="arrow">←</span>
+            <span class="arrow" aria-hidden="true">←</span>
             <span>SCROLL HORIZONTALLY</span>
-            <span class="arrow">→</span>
+            <span class="arrow" aria-hidden="true">→</span>
         </div>
-    </div>
+    </aside>
 
     <!-- Resume Lightbox -->
-    <div id="resume-lightbox" class="resume-lightbox">
+    <dialog id="resume-lightbox" class="resume-lightbox">
         <div class="resume-container">
-            <img src="images/resume.png" alt="Kenz Barina Resume" class="resume-image">
-            <a href="#" class="close-resume">×</a>
+            <img src="images/resume.png" alt="Kenz Barina Resume" class="resume-image" loading="lazy">
+            <a href="#" class="close-resume" aria-label="Close resume preview">×</a>
         </div>
-    </div>
+    </dialog>
 
     <!-- Main JavaScript for Horizontal Scrolling and Parallax -->
     <script>
@@ -146,6 +222,7 @@
             const background = document.querySelector('.parallax-bg');
             const skillsSection = document.getElementById('skills');
             const mainNav = document.querySelector('.main-nav');
+            const menuToggle = document.querySelector('.menu-toggle');
             
             // Function to handle parallax effect
             function updateParallax() {
@@ -155,14 +232,29 @@
                 
                 // Check if skills section is in view
                 const skillsRect = skillsSection.getBoundingClientRect();
-                const isInView = skillsRect.left < window.innerWidth && skillsRect.right > 0;
+                const isSkillsInView = skillsRect.left < window.innerWidth && skillsRect.right > 0;
                 
-                if (isInView && !skillsSection.classList.contains('viewing')) {
+                // Check if projects section is in view
+                const projectsSection = document.getElementById('projects');
+                const projectsRect = projectsSection.getBoundingClientRect();
+                const isProjectsInView = projectsRect.left < window.innerWidth && projectsRect.right > 0;
+                
+                // Handle skills section visibility
+                if (isSkillsInView && !skillsSection.classList.contains('viewing')) {
                     skillsSection.classList.remove('viewed');
                     skillsSection.classList.add('viewing');
-                } else if (!isInView && skillsSection.classList.contains('viewing')) {
+                } else if (!isSkillsInView && skillsSection.classList.contains('viewing')) {
                     skillsSection.classList.remove('viewing');
                     skillsSection.classList.add('viewed');
+                }
+                
+                // Handle projects section visibility
+                if (isProjectsInView && !projectsSection.classList.contains('viewing')) {
+                    projectsSection.classList.remove('viewed');
+                    projectsSection.classList.add('viewing');
+                } else if (!isProjectsInView && projectsSection.classList.contains('viewing')) {
+                    projectsSection.classList.remove('viewing');
+                    projectsSection.classList.add('viewed');
                 }
             }
             
@@ -188,6 +280,14 @@
                     toggleMenu();
                 }
             });
+            
+            // Add click event listeners to all skill boxes
+            const skillBoxes = document.querySelectorAll('#skills .skill-box');
+            skillBoxes.forEach(box => {
+                box.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
         });
 
         // Add menu toggle function
@@ -199,8 +299,12 @@
             if (window.innerWidth > 992) {
                 nav.classList.toggle('active');
                 
+                // Update ARIA attributes
+                const isExpanded = nav.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isExpanded);
+                
                 // Explicitly hide/show the menu toggle
-                if (nav.classList.contains('active')) {
+                if (isExpanded) {
                     menuToggle.style.display = 'none';
                 } else {
                     menuToggle.style.display = 'flex';
@@ -217,10 +321,12 @@
                 // Mobile view - ensure menu is visible and remove active class
                 nav.classList.remove('active');
                 menuToggle.style.display = 'none';
+                menuToggle.setAttribute('aria-expanded', 'false');
             } else {
                 // Desktop view - reset to default state
                 if (!nav.classList.contains('active')) {
                     menuToggle.style.display = 'flex';
+                    menuToggle.setAttribute('aria-expanded', 'false');
                 }
             }
         });
@@ -229,7 +335,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             if (window.innerWidth <= 992) {
                 const menuToggle = document.querySelector('.menu-toggle');
-                if (menuToggle) menuToggle.style.display = 'none';
+                if (menuToggle) {
+                    menuToggle.style.display = 'none';
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
             }
         });
     </script>
